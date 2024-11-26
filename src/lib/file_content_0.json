@@ -1,0 +1,30 @@
+[
+	{
+		"background": "/couple.jpg",
+		"content": [
+			[
+				"Learn About",
+				" permits individuals who participate in an employer’s group health plan, to continue paying for that plan with no employer discount to retain their coverage when it would otherwise end."
+			],
+			[
+				"Affordable Alternative Plans",
+				"Explore affordable options that offer reduced rates and increased coverage based on having a decent health history."
+			]
+		],
+		"category": "Benefits",
+		"subheader": "Why switch from your employer's plan?",
+
+		"header": "Why switch from your employer's plan?"
+	},
+	{
+		"content": [
+			["Share Your Story", "Give us the details we need to find the best insurance option for you"],
+			["Discover Your Options", "Explore the available options with one of our expert agents"],
+			["Get Your Plan", "Get the most affordable and suitable insurance plan in your state"]
+		],
+		"category": "COBRA Insurance",
+		"subheader": "Why switch from your employer's plan?",
+
+		"header": "Why switch from your employer's plan?"
+	}
+]

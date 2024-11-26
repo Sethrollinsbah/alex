@@ -1,0 +1,46 @@
+{
+	"Pros": [
+		[
+			"Continuation of Coverage",
+			"COBRA allows you to maintain the same health insurance plan you had while employed, ensuring continuity in care.",
+			false
+		],
+		[
+			"No Pre-existing Condition Exclusions",
+			"You cannot be denied coverage for pre-existing conditions, which is crucial for those with health issues needing ongoing medical care.",
+			false
+		],
+		[
+			"Flexible Duration",
+			"Coverage can last for 18-36 months , providing a temporary safety net while finding a long term solution.",
+			false
+		],
+		[
+			"Access to Network Providers",
+			"You can continue to see the same doctors and use the same healthcare facilities.",
+			false
+		]
+	],
+	"Cons": [
+		[
+			"Cost",
+			"You typically have to pay the full premium (including the portion previously covered by the employer) plus a 2% administrative fee, resulting in 2-4x the previous monthly costs.",
+			false
+		],
+		[
+			"Limited Duration",
+			"COBRA is temporary and is not sufficient for long-term health coverage needs.",
+			false
+		],
+		[
+			"Complexity",
+			"The process of enrolling in COBRA can be complicated, with strict timelines and requirements.",
+			false
+		],
+		[
+			"No Control Over Changes to Your Plan",
+			"If your former employer changes their company's health plan, your COBRA plan will also change, and you wonâ€™t have the option to choose a different plan or keep your previous one.",
+			false
+		]
+	]
+}

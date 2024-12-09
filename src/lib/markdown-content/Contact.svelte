@@ -41,8 +41,7 @@
 		/>
 		<Phone bind:code={form.code} bind:number={form.number} />
 		<Text className="text-xs mt-2 text-gray-400"
-			>By submiting this form you agree to allow us to contact you within accordance of our privacy
-			policy</Text
+			>By submiting this form you agree to be to contacted in accordance of our privacy policy</Text
 		>
 		<Button
 			on:click={async () => {

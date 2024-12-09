@@ -106,7 +106,8 @@ function parseCSV(csvText) {
 // Fetch the CSV file and parse it
 async function loadZipData() {
 	try {
-		const response = await fetch('zip.csv');
+		const response = await fetch('/zip.csv');
+		console.log(response);
 		if (!response.ok) {
 			throw new Error('Failed to fetch zip data.');
 		}

@@ -10,13 +10,6 @@
 
 	const questions = [
 		{
-			key: 'zip',
-			type: 'zip' as const,
-			title: 'What is your zip code?',
-			validation: (value: string) => /^\d{5}$/.test(value),
-			errorMessage: 'Please enter a valid zip code'
-		},
-		{
 			key: 'name',
 			type: 'name' as const,
 			title: 'What is your first and last name?',
@@ -36,6 +29,13 @@
 			title: 'What is your DOB?',
 			validation: (value: DateValue) => value !== null,
 			errorMessage: 'Please select your date of birth'
+		},
+		{
+			key: 'zip',
+			type: 'zip' as const,
+			title: 'What is your zip code?',
+			validation: (value: string) => /^\d{5}$/.test(value),
+			errorMessage: 'Please enter a valid zip code'
 		},
 		{
 			key: 'phone',

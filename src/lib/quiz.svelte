@@ -3,12 +3,11 @@
 	import CalendarIcon from 'lucide-svelte/icons/calendar';
 	import Input from '$lib/Input.svelte';
 	import Phone from '$lib/Phone.svelte';
-	import { page } from '$app/stores';
 	import Calendar from '$lib/Calendar.svelte';
 	import * as Popover from '$lib/components/ui/popover';
 	import { toast } from 'svelte-sonner';
 	import { Button } from '$lib/components/ui/button';
-	import { cn } from '$lib/utils';
+	import { cn, getLocation } from '$lib/utils';
 
 	// Define strict types for the question types
 	type QuestionType = 'name' | 'email' | 'age' | 'zip' | 'phone' | 'choice';
@@ -35,7 +34,6 @@
 
 	export let questions: Question[];
 	export let onSubmit: (answers: Record<string, any>) => void;
-	export let lang = 'en';
 
 	let show = 0;
 	// Initialize answers with proper structure for name fields
@@ -79,6 +77,7 @@
 			show_percent = ((questions.length - show) / questions.length) * 100;
 		}
 	}
+	let zipcodemessage;
 </script>
 
 <div
@@ -196,8 +195,28 @@
 								className="w-full h-full min-h-16"
 								bind:value_place={answers[question.key]}
 								placeholder={'Zip Code'}
+								on:input={(event) => {
+									console.log(event);
+								}}
 								placeholder_eg={'12345'}
 							/>
+							<button
+								type="button"
+								on:click={async () => {
+									try {
+										const zipCode = await getLocation();
+										console.log();
+										zipcodemessage = 'Found: ' + zipCode;
+										answers[question.key] = zipCode;
+									} catch (error) {
+										zipcodemessage = error.message;
+									}
+								}}
+								class="mt-0 pt-0 text-xs hover:underline"
+								>Get location <i class="font-light">
+									{#if zipcodemessage}{zipcodemessage}{/if}</i
+								></button
+							>
 							<Button on:click={handleNext} class="relative mx-auto w-fit max-w-xs">
 								{'Continue'}
 							</Button>

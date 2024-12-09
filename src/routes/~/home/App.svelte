@@ -10,6 +10,13 @@
 
 	const questions = [
 		{
+			key: 'zip',
+			type: 'zip' as const,
+			title: 'What is your zip code?',
+			validation: (value: string) => /^\d{5}$/.test(value),
+			errorMessage: 'Please enter a valid zip code'
+		},
+		{
 			key: 'name',
 			type: 'name' as const,
 			title: 'What is your first and last name?',
@@ -31,13 +38,6 @@
 			errorMessage: 'Please select your date of birth'
 		},
 		{
-			key: 'zip',
-			type: 'zip' as const,
-			title: 'What is your zip code?',
-			validation: (value: string) => /^\d{5}$/.test(value),
-			errorMessage: 'Please enter a valid zip code'
-		},
-		{
 			key: 'phone',
 			type: 'phone' as const,
 			title: 'What is your phone number?',
@@ -51,70 +51,20 @@
 			title: 'What is your email?',
 			validation: (value: string) => /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/.test(value),
 			errorMessage: 'Please enter a valid email address'
+		},
+		{
+			key: 'pregnant',
+			type: 'choice' as const,
+			title: 'Are you and your spouse currently pregnant?',
+			choices: ['Yes', 'No']
 		}
 	];
 
 	export let data: PageData;
 	let company = ['/aetna.png', '/cigna.png', '/blue_cross.png', '/united_healthcare.png'];
 
-	let why_us = [
-		[
-			'Continuation of Coverage',
-			true,
-			false,
-			'COBRA allows you to maintain the same health insurance plan you had while employed, ensuring continuity in care.'
-		],
-		[
-			'No Pre-existing Condition Exclusions',
-			true,
-			false,
-			'You cannot be denied coverage for pre-existing conditions, which is crucial for those with health issues needing ongoing medical care.'
-		],
-		[
-			'Flexible Duration',
-			true,
-			false,
-			'Coverage can last for 18-36 months, providing a temporary safety net while finding a long term solution.'
-		],
-		[
-			'Access to Network Providers',
-			true,
-			false,
-			'You can continue to see the same doctors and use the same healthcare facilities.'
-		],
-		[
-			'Cost',
-			true,
-			false,
-			'You typically have to pay the full premium (including the portion previously covered by the employer) plus a 2% administrative fee, resulting in 2-4x the previous monthly costs.'
-		],
-		[
-			'Limited Duration',
-			true,
-			false,
-			'COBRA is temporary and is not sufficient for long-term health coverage needs.'
-		],
-		[
-			'Complexity',
-			true,
-			false,
-			'The process of enrolling in COBRA can be complicated, with strict timelines and requirements.'
-		],
-		[
-			'No Control Over Changes to Your Plan',
-			true,
-			false,
-			"If your former employer changes their company's health plan, your COBRA plan will also change, and you won’t have the option to choose a different plan or keep your previous one."
-		]
-	];
-	let showMore = false; // To control if we show more entries
-
 	// Reactive array to control the display based on showMore
-	$: displayedBenefits = showMore ? why_us : why_us.slice(0, 3);
-
-	import { page } from '$app/stores';
 	import FAQ from '$lib/FAQ.svelte';
-	import MailHref from '$lib/MailHref.svelte';
 </script>
 
 <!-- Header -->
@@ -171,7 +121,6 @@
 				// Handle unexpected errors
 			}
 		}}
-		lang="en"
 	/>
 </div>
 

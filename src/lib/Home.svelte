@@ -27,6 +27,7 @@
 		age: value,
 		zip: '',
 		phone: '',
+		pregnant: ['yes', 'no'],
 		email: ''
 	};
 
@@ -34,6 +35,7 @@
 		coverage_type: string;
 		name: string | null;
 		lastName: string | null;
+		pregnant: boolean | null;
 		phone: string;
 		code: string; // Assuming 'US' is a string code
 		dob: string | null; // Date of birth as a string (e.g., "YYYY-MM-DD"), or use `Date` if needed
@@ -47,6 +49,7 @@
 		coverage_type: '',
 		name: null,
 		lastName: null,
+		pregnant: null,
 		phone: '',
 		code: 'US',
 		dob: null,
@@ -118,7 +121,7 @@
 			class="absolute top-0 h-full w-full scale-75 object-cover opacity-50 md:relative md:scale-100 md:opacity-100"
 		></div>
 	</div>
-	<Quiz {data} {customer_data} {show_percent} {show} {value} {form_q}></Quiz>
+	<Quiz {customer_data} {show_percent} {show} {value} {form_q}></Quiz>
 </section>
 <div class="grid w-[90%] max-w-xl grid-cols-2 items-center justify-evenly pt-16 sm:flex">
 	{#each company as c}

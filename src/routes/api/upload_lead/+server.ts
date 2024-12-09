@@ -6,6 +6,7 @@ export async function POST({ request, platform }) {
 	try {
 		const { data, type } = await request.json();
 
+		console.log(data);
 		if (!data) {
 			return new Response(JSON.stringify({ error: 'Missing required fields' }), { status: 400 });
 		}
@@ -49,6 +50,7 @@ export async function POST({ request, platform }) {
 		      <strong>LASTNAME:</strong> ${data.name.lastName}<br>
 		      <strong>PHONE:</strong> ${data.phone.number}<br>
 		      <strong>PHONE TYPE:</strong> ${data.phone.code}<br>
+					<strong>Pregnant:</strong> ${data.pregnant}<br/>
 		      <strong>DOB:</strong> ${data.age.year}-${data.age.month}-${data.age.day}<br>
 		      <strong>CURRENT AGE:</strong> ${currentAge || null}<br>
 		      <strong>HOUSEHOLD:</strong> ${data.household}<br>

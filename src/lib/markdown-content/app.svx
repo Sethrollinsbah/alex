@@ -132,7 +132,7 @@ let why_us = [
     // Check if the request was successful
     if (res.ok) {
       console.log('Lead uploaded successfully');
-      goto('/~/completion');  // Navigate to the completion page
+      goto(`/~/completion?name=${data.name.firstName}`);  // Navigate to the completion page
     } else {
       console.error('Error uploading lead:', await res.text());
       // Handle any errors from the API

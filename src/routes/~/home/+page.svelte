@@ -1,5 +1,5 @@
 <script lang="ts">
-	import App from '$lib/markdown-content/app.svx';
+	import App from './App.svelte';
 	import type { PageData } from './$types';
 	import { page } from '$app/stores';
 

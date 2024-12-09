@@ -5,6 +5,7 @@
 	import Phone from '$lib/Phone.svelte';
 	import InsureLogo from '$lib/content/InsureLogo.svelte';
 	import { toast } from 'svelte-sonner';
+	import { goto } from '$app/navigation';
 
 	let form = {
 		name: '',
@@ -62,6 +63,9 @@
 					method: 'POST',
 					body: JSON.stringify({ data, type: 'Contact' })
 				});
+				if (res.ok) {
+					goto('/~/completion?name=' + form.name);
+				}
 			}}
 			class="mt-5 rounded-full bg-blue-700 ">Submit</Button
 		>

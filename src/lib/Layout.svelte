@@ -182,22 +182,17 @@
 			class="flex h-fit min-h-16 w-full flex-col items-center justify-between space-y-2 bg-gray-200 px-4 py-4 text-center text-xs font-light text-gray-600 md:flex-row md:space-y-0 md:text-end"
 		>
 			<div class="flex divide-x-[1px] divide-gray-400/50">
-				<a href="/~/home#enroll">Enroll Now</a>
-				<span class="mx-1">|</span>
-
-				<a href="/~/about-us">About</a>
-				<span class="mx-1">|</span>
-
-				<a href="/~/alternatives">Alternatives</a>
-				<span class="mx-1">|</span>
-
-				<a href="/~/auth">Agents</a>
+				<a class="px-1 hover:underline" href="/~/home#enroll">Enroll Now</a>
+				<a class="px-1 hover:underline" href="/~/about-us">About Us</a>
+				<a class="px-1 hover:underline" href="/~/home#alternatives">COBRA Alternatives</a>
+				<a class="px-1 hover:underline" href="/~/home#proscons">Pros and Cons</a>
+				<a class="px-1 hover:underline" href="/~/home#contact-us">Contact Us</a>
+				<a class="px-1 hover:underline" href="/auth">Agents</a>
 			</div>
 
 			<p>
 				Copyright © 2024 COBRA Solutions. All rights reserved.
 				<br />
-				<i class="mx-auto"> License number: G1341031 </i>
 			</p>
 		</footer>
 	</section>

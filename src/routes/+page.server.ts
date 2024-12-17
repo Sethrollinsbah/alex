@@ -2,7 +2,12 @@ import { redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event) => {
-  return redirect(302, '/~/home');
+  if (event.error) {
+    return redirect(302, '/en/home');
+  }
+  return redirect(302, '/en/home');
+
+  throw redirect(302, '/en/home');
 };
 
 async function getContent(r2: R2Bucket, fileName: string, json: boolean = false) {

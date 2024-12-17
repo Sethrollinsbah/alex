@@ -68,7 +68,7 @@ number: ''
 				<Text className="m-auto uppercase text-gray-700 text-4xl sm:text-5xl md:text-6xl text-center font-light">Meet our amazing team</Text>
 				<Text className="font-light text-gray-500 text-lg">Our philosophy is simple, onboard great agents and give them the resources to do great work</Text>
 				</div>
-				<Button href="/~/home#quiz" class="mx-auto w-fit">Enroll now</Button>
+				<Button href="/en/home#quiz" class="mx-auto w-fit">enroll now</Button>
 				
 				<Carousel.Root
 				  opts={{

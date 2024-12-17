@@ -1,5 +1,5 @@
 #:schema node_modules/wrangler/config-schema.json
-name = "cobra-sol-dier"
+name = "alex-health-consult"
 compatibility_date = "2024-11-12"
 pages_build_output_dir = ".svelte-kit/cloudflare"
 
@@ -14,5 +14,5 @@ database_name = "leads-cobra-solutions"
 database_id = "e9dabbc6-da93-4c90-91b7-dbe395158ed3"
 
 [[kv_namespaces]]
-binding = "KV"
-id = "6a8b43e3f683433792616cd2fd026f80"
+binding = "alex"
+id = "b74a18979cb44efaad9051950660e710"

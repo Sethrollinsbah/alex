@@ -9,6 +9,7 @@
 	import { cn, getLocation } from '$lib/utils';
 	import { CalendarIcon } from 'lucide-svelte';
 	import { toast } from 'svelte-sonner';
+	import Checkbox from '$lib/components/ui/checkbox/checkbox.svelte';
 
 	let user = $state({
 		dob: undefined,
@@ -19,6 +20,7 @@
 		phone: '',
 		zip: ''
 	});
+	let formChecked = $state(false);
 	let validate: Validate = $state({
 		email: null,
 		zip: null,
@@ -321,7 +323,28 @@
 			}}
 		/>
 	</div>
+	<div class="col-span-full flex items-center space-x-2">
+		<Checkbox id="terms" bind:checked={formChecked} aria-labelledby="terms-label" />
+		<Label
+			id="terms-label"
+			for="terms"
+			class="text-sm font-light leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+		>
+			I agree to receive text messages from Alexander Health Consulting. I have read and accept the <span
+				><a target="_blank" href="/en/terms" class="text-muted-foreground hover:underline"
+					>Terms of Service</a
+				></span
+			>
+			and
+			<span
+				><a target="_blank" href="/en/privacy" class="text-muted-foreground hover:underline"
+					>Privacy Policy</a
+				></span
+			>. Message and data rates may apply. To opt out, text STOP at any time.
+		</Label>
+	</div>
 	<Button
+		disabled={!formChecked}
 		on:click={async () => {
 			if (Object.values(validate).some((v) => v === true || v === null)) {
 				console.log('Validation errors exist. Fix them before proceeding.');

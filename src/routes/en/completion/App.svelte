@@ -33,7 +33,7 @@
 	</div>
 
 	<div
-		class="border-clip-radius group relative flex aspect-square h-full w-full items-center justify-center rounded-md px-0 shadow-lg"
+		class="border-clip-radius group relative mx-auto flex aspect-square h-full w-full max-w-sm items-center justify-center rounded-md px-0 shadow-lg"
 	>
 		<img
 			src={agent.image}

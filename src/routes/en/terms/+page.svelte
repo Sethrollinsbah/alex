@@ -7,7 +7,7 @@
 </script>
 
 <main class="terms-of-service">
-	<h1>Terms of Service</h1>
+	<h1 class="text-xl font-bold">Terms of Service</h1>
 
 	<section id="introduction">
 		<h2>1. Introduction</h2>

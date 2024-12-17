@@ -1,30 +1,46 @@
 <script>
-	// Optionally add interactivity if needed
+	const effectiveDate = 'Monday, December 9th, 2024';
+	const companyInfo = {
+		name: 'alexanderhealthconsulting.org',
+		location: 'Tampa, Florida',
+		email: 'info@alexanderhealthconsulting.com'
+	};
+	const collectedData = [
+		'Full name',
+		'Email address',
+		'Household information',
+		'Phone number',
+		'Zip code',
+		'General health information'
+	];
+	const rights = [
+		'Request access to your data',
+		'Request correction of inaccurate data',
+		'Request deletion of your data'
+	];
+	const sharedWith = ['Our agents', 'Referral partners'];
 </script>
 
-<section>
-	<h1>Privacy Policy</h1>
-	<p><strong>Effective Date:</strong> Monday, December 9th, 2024</p>
+<section class="privacy-policy">
+	<h1 class="text-xl font-bold">Privacy Policy</h1>
+	<p><strong>Effective Date:</strong> {effectiveDate}</p>
 
 	<h2>Who We Are</h2>
 	<p>
-		CobraSolutions.org is located in Tampa, Florida. We specialize in helping individuals find
-		affordable alternatives to COBRA insurance plans.
+		{companyInfo.name} is located in {companyInfo.location}. We specialize in helping individuals
+		find affordable alternatives to COBRA insurance plans.
 	</p>
 	<p>If you have any questions about this privacy policy, please contact us at:</p>
 	<ul>
-		<li>Email: <a href="mailto:info@cobrasolutions.org">info@cobrasolutions.org</a></li>
+		<li>Email: <a href={`mailto:${companyInfo.email}`}>{companyInfo.email}</a></li>
 	</ul>
 
 	<h2>What Information We Collect</h2>
 	<p>We collect the following types of information from users:</p>
 	<ul>
-		<li>Full name</li>
-		<li>Email address</li>
-		<li>Household information</li>
-		<li>Phone number</li>
-		<li>Zip code</li>
-		<li>General health information</li>
+		{#each collectedData as data}
+			<li>{data}</li>
+		{/each}
 	</ul>
 
 	<h2>How We Use Your Information</h2>
@@ -36,20 +52,21 @@
 	<h2>How We Share Your Information</h2>
 	<p>Your data may be shared with:</p>
 	<ul>
-		<li>Our agents</li>
-		<li>Referral partners</li>
+		{#each sharedWith as entity}
+			<li>{entity}</li>
+		{/each}
 	</ul>
 
 	<h2>Your Rights</h2>
 	<p>You have the right to:</p>
 	<ul>
-		<li>Request access to your data</li>
-		<li>Request correction of inaccurate data</li>
-		<li>Request deletion of your data</li>
+		{#each rights as right}
+			<li>{right}</li>
+		{/each}
 	</ul>
 	<p>
-		To exercise these rights, email us at <a href="mailto:info@cobrasolutions.org"
-			>info@cobrasolutions.org</a
+		To exercise these rights, email us at <a href={`mailto:${companyInfo.email}`}
+			>{companyInfo.email}</a
 		>.
 	</p>
 
@@ -66,24 +83,24 @@
 </section>
 
 <style>
-	section {
+	.privacy-policy {
 		max-width: 800px;
-		margin: 2rem auto;
-		padding: 1rem;
-		line-height: 1.6;
+		margin: 0 auto;
+		padding: 2rem;
 		font-family: Arial, sans-serif;
+		line-height: 1.6;
 	}
-
 	h1,
 	h2 {
 		color: #2c3e50;
 	}
-
+	p {
+		color: #34495e;
+	}
 	a {
-		color: #2980b9;
+		color: #3498db;
 		text-decoration: none;
 	}
-
 	a:hover {
 		text-decoration: underline;
 	}

@@ -10,6 +10,7 @@
 	import { CalendarIcon } from 'lucide-svelte';
 	import { toast } from 'svelte-sonner';
 	import Checkbox from '$lib/components/ui/checkbox/checkbox.svelte';
+	import { goto } from '$app/navigation';
 
 	let user = $state({
 		dob: undefined,
@@ -362,8 +363,14 @@
 				}
 				return; // Stop execution if any validation errors exist
 			}
-			console.log('oj');
-			// await fetch('/api/upload_lead');
+			await fetch('/api/upload_lead', {
+				method: 'POST',
+				body: JSON.stringify({ data: user, type: 'Lead' })
+			}).then((res) => {
+				if (res.ok) {
+					goto('/en/completion');
+				}
+			});
 		}}
 		class="col-span-full mt-8 rounded-full bg-accent">Request a Quote</Button
 	>

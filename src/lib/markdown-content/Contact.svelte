@@ -1,20 +1,31 @@
-<script>
+<script lang="ts">
 	import Text from '$lib/text.svelte';
 	import { Button } from '$lib/components/ui/button';
-	import Input from '$lib/Input.svelte';
 	import Phone from '$lib/Phone.svelte';
 	import InsureLogo from '$lib/content/InsureLogo.svelte';
 	import { toast } from 'svelte-sonner';
 	import { goto } from '$app/navigation';
 	import { Label } from '$lib/components/ui/label';
 	import { Checkbox } from '$lib/components/ui/checkbox';
+	import { cn } from '$lib/utils';
+	import { Input } from '$lib/components/ui/input';
 
-	let formChecked = $state(false);
-	let form = {
+	let userChecked = $state(false);
+	let user = $state({
 		name: '',
 		email: '',
 		code: 'US',
-		number: ''
+		phone: ''
+	});
+	let validate: Validate = $state({
+		email: null,
+		phone: null,
+		name: null
+	});
+	type Validate = {
+		email: boolean | null;
+		phone: boolean | null;
+		name: boolean | null;
 	};
 </script>
 
@@ -39,26 +50,88 @@
 
 			<Text className="text-lg md:text-xl font-bold">Request a call from us</Text>
 			<Text className="text-base  mb-4 text-gray-600"
-				>Fill out the form to get a quote from one of our registered agents.</Text
+				>Fill out the user to get a quote from one of our registered agents.</Text
 			>
 
-			<Input
-				boolean_disabled={false}
-				bind:value_place={form.name}
-				placeholder_eg=""
-				placeholder="Name"
-			/>
-			<Input
-				boolean_disabled={false}
-				bind:value_place={form.email}
-				placeholder_eg=""
-				type="email"
-				placeholder="Email"
-			/>
-			<Phone bind:code={form.code} bind:number={form.number} />
+			<div class=" flex w-full flex-col gap-1.5">
+				<Label for="name" class={cn('', validate.name && 'text-destructive')}>Name</Label>
+				<Input
+					type="text"
+					id="name"
+					on:blur={() => {
+						// Validate first name: must be more than 2 characters
+						const isValid = user.name.length > 2;
+						validate.name = !isValid; // true if invalid, false if valid
+						if (!isValid) {
+							toast.error('Name is invalid');
+						}
+					}}
+					on:input={(event) => {
+						validate.name = false;
 
-			<div class="flex items-center space-x-2">
-				<Checkbox id="terms" bind:checked={formChecked} aria-labelledby="terms-label" />
+						// Remove invalid characters: allow only letters (uppercase and lowercase)
+						if (!event.target) {
+							return;
+						}
+						const sanitizedValue = event.target.value.replace(/[^a-zA-Z]/g, '');
+						user.name = sanitizedValue;
+
+						// Update validation dynamically while typing
+						validate.name = sanitizedValue.length > 2;
+					}}
+					placeholder=""
+				/>
+			</div>
+			<div class="col-span-full flex w-full flex-col gap-1.5">
+				<Label for="email" class={cn('', validate.email && 'text-destructive')}>Email</Label>
+				<Input
+					type="email"
+					id="email"
+					placeholder=""
+					bind:value={user.email}
+					on:blur={(event) => {
+						// Validate ZIP code: must be exactly 5 digits
+						const isValid =
+							/^[a-zA-Z0-9]+([._-][0-9a-zA-Z]+)*@[a-zA-Z0-9]+([.-][0-9a-zA-Z]+)*\.[a-zA-Z]{2,}$/.test(
+								user.email
+							);
+						validate.email = !isValid;
+						if (!isValid) {
+							toast.error('Email is invalid');
+						}
+					}}
+					on:input={(event) => {
+						// Remove non-numeric characters and lim
+						validate.email = false;
+					}}
+				/>
+			</div>
+			<div class="flex w-full flex-col gap-1.5">
+				<Label for="phone" class={cn('', validate.phone && 'text-destructive')}>Phone</Label>
+				<Input
+					type="tel"
+					id="phone"
+					bind:value={user.phone}
+					placeholder=""
+					on:blur={() => {
+						// Validate zip code: must be exactly 5 digits
+						const isValid = /^[0-9]{10}$/.test(user.phone);
+						console.log(isValid);
+						validate.phone = !isValid; // Assuming `validate.zip` tracks zip code validation
+						if (!isValid) {
+							toast.error('Phone number is invalid');
+						}
+					}}
+					on:input={(/** @type {{ target: { value: string; }; }} */ event) => {
+						// Remove non-numeric characters and limit to 10 digits
+						const sanitizedValue = event.target.value.replace(/[^0-9]/g, '').slice(0, 10);
+						user.phone = sanitizedValue;
+						validate.phone = sanitizedValue.length === 10; // Valid if 10 digits
+					}}
+				/>
+			</div>
+			<div class="mt-4 flex items-center space-x-2">
+				<Checkbox id="terms" bind:checked={userChecked} aria-labelledby="terms-label" />
 				<Label
 					id="terms-label"
 					for="terms"
@@ -79,27 +152,27 @@
 				</Label>
 			</div>
 			<Button
-				disabled={!formChecked}
+				disabled={!userChecked}
 				on:click={async () => {
-					if (form.name.length < 1) {
+					if (user.name.length < 1) {
 						toast.error('Please add your name');
 						return;
 					}
-					if (form.email.length < 1) {
+					if (user.email.length < 1) {
 						toast.error('Please add your email');
 						return;
 					}
-					if (form.number.length < 9) {
+					if (user.phone.length < 9) {
 						toast.error('Please add your phone');
 						return;
 					}
-					const data = form;
+					const data = user;
 					const res = await fetch('/api/upload_lead', {
 						method: 'POST',
 						body: JSON.stringify({ data, type: 'Contact' })
 					});
 					if (res.ok) {
-						goto('/en/completion?name=' + form.name);
+						goto('/en/completion?name=' + user.name);
 					}
 				}}
 				class="mt-5 rounded-full bg-accent ">Submit</Button

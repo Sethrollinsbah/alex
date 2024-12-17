@@ -139,13 +139,13 @@
 				>
 					I agree to receive text messages from Alexander Health Consulting. I have read and accept
 					the <span
-						><a target="_blank" href="/terms" class="text-muted-foreground hover:underline"
+						><a target="_blank" href="/en/terms" class="text-muted-foreground hover:underline"
 							>Terms of Service</a
 						></span
 					>
 					and
 					<span
-						><a target="_blank" href="/privacy" class="text-muted-foreground hover:underline"
+						><a target="_blank" href="/en/privacy" class="text-muted-foreground hover:underline"
 							>Privacy Policy</a
 						></span
 					>. Message and data rates may apply. To opt out, text STOP at any time.

@@ -115,13 +115,13 @@
 
 	<!-- Additional SEO Meta Tags -->
 	<link rel="canonical" href={currentUrl} />
-	<meta name="theme-color" content="#000000" />
+	<meta name="theme-color" content="#022451" />
 	<meta name="apple-mobile-web-app-status-bar-style" content="default" />
 	<meta name="format-detection" content="telephone=no" />
 
 	<!-- Favicon and App Icons -->
 	<link rel="icon" href="/favicon.ico" />
-	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+	<link rel="apple-icon" sizes="180x180" href="/apple-icon.png" />
 	<link rel="manifest" href="/site.webmanifest" />
 
 	<!-- Schema.org for Google -->

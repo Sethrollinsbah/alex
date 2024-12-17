@@ -8,68 +8,6 @@
 	export let data;
 
 	// Get the current URL dynamically
-	$: currentUrl = $page.url.href;
-	const burialInsuranceKeywords: string[] = [
-		'COBRA insurance',
-		'COBRA health insurance',
-		'COBRA health coverage',
-		'COBRA insurance plans',
-		'Affordable COBRA insurance',
-		'COBRA health insurance continuation',
-		'COBRA plan for former employees',
-		'Employer-sponsored COBRA insurance',
-		'COBRA insurance benefits',
-		'Health insurance after job loss',
-
-		'COBRA insurance eligibility',
-		'How COBRA insurance works',
-		'COBRA health plan continuation',
-		'Affordable health insurance after job loss',
-		'COBRA insurance options',
-		'COBRA health coverage for families',
-		'COBRA insurance rates',
-		'COBRA insurance cost',
-		'COBRA vs private health insurance',
-		'COBRA insurance for dependents',
-
-		// Location-Specific Keywords
-		'COBRA insurance in [City/State]',
-		'COBRA health insurance in [City/State]',
-		'Affordable COBRA plans in [City/State]',
-		'[City/State] COBRA health coverage',
-		'COBRA insurance options in [City/State]',
-		'COBRA plan for former employees in [City/State]',
-
-		// Insurance-related Keywords
-		'COBRA insurance with no medical exam',
-		'Instant approval COBRA insurance',
-		'Affordable COBRA insurance for seniors',
-		'COBRA insurance for families',
-		'Guaranteed issue COBRA health insurance',
-		'COBRA health insurance for retirees',
-		'COBRA insurance for young adults',
-		'Best COBRA insurance plans',
-		'Short-term COBRA insurance plans',
-
-		// Long-Tail Keywords
-		'How to apply for COBRA insurance after leaving a job',
-		'What is COBRA insurance and how does it work?',
-		'How much does COBRA insurance cost?',
-		'COBRA insurance for family coverage',
-		'Is COBRA insurance cheaper than private insurance?',
-		'COBRA vs marketplace health insurance',
-		'How long does COBRA insurance last after job loss?'
-	];
-	export const meta = {
-		twitterHandle: null,
-		keywords: burialInsuranceKeywords,
-		author: 'Seth Ryan Rollins',
-
-		title: 'Cobra Insure.',
-		description: 'Cobra Insure gets you amazing deals on health insurance',
-		image: '/businesscard.webp',
-		image_alt: 'Famile'
-	};
 </script>
 
 <section class="relative flex h-full min-h-[100dvh] w-screen flex-col">

@@ -1,6 +1,9 @@
 <script lang="ts">
+	import { blur } from 'svelte/transition';
 	import { Toaster } from '$lib/components/ui/sonner';
 	import '../app.css';
+	import { browser } from '$app/environment';
+	import InsureLogo from '$lib/content/InsureLogo.svelte';
 	let { children } = $props();
 	let currentUrl = 'https://CobraSolutions.org';
 
@@ -54,13 +57,25 @@
 	export const meta = {
 		twitterHandle: null,
 		keywords: keywords,
-		author: 'CobraSolutions.org Team',
-		title: 'CobraSolutions - Affordable COBRA Alternatives',
+		author: 'Seth Rollins',
+		title: 'Alexander Health Consulting',
 		description:
-			'CobraSolutions helps users find cost-effective alternatives to COBRA insurance plans with tailored solutions for their health insurance needs.',
-		image: '/businesscard.jpeg',
-		image_alt: 'CobraSolutions Logo'
+			'Alexander helps users find plans with tailored solutions for their health insurance needs.',
+		image: '/logo.png',
+		image_alt: 'Alexander Health Consulting Logo'
 	};
+	let loaded = $state(false);
+	let remove = $state(true);
+	$effect(() => {
+		if (browser) {
+			loaded = true;
+		}
+		if (loaded) {
+			setTimeout(() => {
+				remove = false;
+			}, 3500);
+		}
+	});
 </script>
 
 <svelte:head>
@@ -85,10 +100,10 @@
 	<meta property="og:image:width" content="1200" />
 	<meta property="og:image:height" content="630" />
 	<meta property="og:url" content={currentUrl} />
-	<meta property="og:site_name" content="Your Website Name" />
+	<meta property="og:site_name" content="Alexander Health Consulting" />
 
 	<!-- Twitter Meta Tags -->
-	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:card" content="logo.svg" />
 	<meta name="twitter:title" content={meta.title} />
 	<meta name="twitter:description" content={meta.description} />
 	<meta name="twitter:image" content={meta.image} />
@@ -125,7 +140,24 @@
     })}
 	</script>
 </svelte:head>
-<div>
-	{@render children()}
-</div>
+
+{#if loaded}
+	<div>
+		{@render children()}
+	</div>
+{/if}
+{#if !loaded}
+	<div
+		out:blur|global={{ delay: 3900, duration: 800 }}
+		class="fixed left-0 top-0 z-50 flex h-screen w-screen flex-col items-center justify-center bg-accent"
+	></div>
+{/if}
+{#if remove}
+	<div
+		out:blur={{ duration: 800 }}
+		class="fixed left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2"
+	>
+		<InsureLogo hide={false}></InsureLogo>
+	</div>
+{/if}
 <Toaster></Toaster>

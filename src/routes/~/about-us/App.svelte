@@ -1,133 +1,82 @@
 <script>
-	import Contact from '$lib/markdown-content/Contact.svelte';
+	import faq from '$lib/faq.json';
+
+	import FAQ from '$lib/FAQ.svelte';
+
 	import { Mail, Instagram, Linkedin } from 'lucide-svelte';
 	import Text from '$lib/text.svelte';
-	import { Button } from '$lib/components/ui/button';
 	import Autoscroll from 'embla-carousel-auto-scroll';
 	import * as Carousel from '$lib/components/ui/carousel';
 
 	import * as Card from '$lib/components/ui/card';
-	const plugin = Autoscroll({ playOnInit: true });
-	let agents = [
-		{
-			name: 'Zach',
-			title: '',
-			image: '/zach.webp',
-			instagram: '',
-			linkedin: '',
-			email: 'zach@cobrasolutions.org'
-		},
-		{
-			name: 'Brianna',
-			title: '',
-			image: '/bri.webp',
-			instagram: '',
-			linkedin: '',
-			email: 'brianna@cobrasolutions.org'
-		},
-		{
-			name: 'Sophia',
-			title: '',
-			image: '/sof.webp',
-			instagram: '',
-			linkedin: '',
-			email: 'sophia@cobrasolutions.org'
-		},
-		{
-			name: 'Sam',
-			title: '',
-			image: '/sam.webp',
-			linkedin:
-				'https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.linkedin.com/in/samuel-alexander-a2800&ved=2ahUKEwiHwIqpsviJAxWoElkFHVX9Co8QFnoECB4QAQ&usg=AOvVaw1W631e0Iu9rs3Z_t-RVWaF',
-			email: ''
-		},
-		{
-			name: 'Seth',
-			title: '',
-			image: '/seth.webp',
-			instagram:
-				'https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.instagram.com/sethryanrollins/&ved=2ahUKEwjvk_jUsviJAxW_MVkFHQiKC78QFnoECCEQAQ&usg=AOvVaw2bxDcnlNS6cDbc59MSL5OW'
-		}
-	];
-
-	let form = {
-		name: '',
-		email: '',
-		code: 'US',
-		number: ''
+	let agent = {
+		name: 'Zach',
+		title: '',
+		image: '/zach.webp',
+		instagram: '',
+		linkedin: '',
+		email: 'zach@cobrasolutions.org'
 	};
+	export let name = '';
+	import CountdownTimer from '$lib/CountdownTimer.svelte';
+	import Contact from '$lib/markdown-content/Contact.svelte';
+	import Form from '$lib/rebuilt/form.svelte';
 </script>
 
 <section class="flex h-full w-full flex-col space-y-8 py-16">
 	<div class="mx-auto w-[90%] max-w-xl text-center">
 		<Text
 			className="m-auto uppercase text-gray-700 text-4xl sm:text-5xl md:text-6xl text-center font-light"
-			>Meet our amazing team</Text
-		>
-		<Text className="font-light text-gray-500 text-lg"
-			>Our philosophy is simple, onboard great agents and give them the resources to do great work</Text
+			>About Zach</Text
 		>
 	</div>
-	<Button href="/~/home#quiz" class="mx-auto w-fit">Enroll now</Button>
 
-	<Carousel.Root
-		opts={{
-			align: 'end',
-			loop: true
-		}}
-		plugins={[plugin]}
-		class="max-w-screen h-full w-full"
+	<div
+		class="border-clip-radius group relative mx-auto flex aspect-square h-full w-[90%] max-w-sm items-center justify-center rounded-md px-0 shadow-lg"
 	>
-		<Carousel.Content class="h-full   w-full">
-			{#each agents as agent, i (i)}
-				<Carousel.Item class="ms:basis-1/2 h-full w-96 basis-9/12 pb-8 md:basis-1/3 lg:basis-1/4">
-					<div class="p-1">
-						<Card.Root>
-							<Card.Content
-								class="border-clip-radius group  relative flex aspect-square h-full    w-full  items-center justify-center rounded-md px-0 shadow-lg"
-							>
-								<img
-									src={agent.image}
-									class="border-clip-radius relative flex aspect-square h-full w-full w-full items-center justify-center overflow-clip rounded-md object-center shadow-lg grayscale transition-all duration-100 group-hover:grayscale-0"
-								/>
-								<div
-									class="absolute bottom-4 left-[1rem] w-[calc(100%-2rem)] rounded-md bg-gray-200 p-4"
-								>
-									<b class="text-lg">{agent.name}</b><br /><span class="font-light"
-										>{agent.title}</span
-									>
-									<div class="absolute -bottom-12 left-4 flex space-x-2">
-										{#if agent.linkedin}
-											<a href={agent.linkedin} target="_blank">
-												<Linkedin class="rounded-full  bg-black p-1 text-white" />
-											</a>
-										{/if}
-										{#if agent.instagram}
-											<a href={agent.instagram} target="_blank">
-												<Instagram class="rounded-full  bg-black p-1 text-white" />
-											</a>
-										{/if}
-										{#if agent.email}
-											<a href={agent.email} target="_blank">
-												<Mail class="rounded-full  bg-black p-1 text-white" />
-											</a>
-										{/if}
-									</div>
-								</div>
-							</Card.Content>
-						</Card.Root>
-					</div>
-				</Carousel.Item>
-			{/each}
-		</Carousel.Content>
-	</Carousel.Root>
+		<img
+			src={agent.image}
+			class="border-clip-radius relative flex aspect-square h-full w-full w-full items-center justify-center overflow-clip rounded-md object-center shadow-lg grayscale transition-all duration-100 group-hover:grayscale-0"
+		/>
+
+		<div class="absolute bottom-4 left-[1rem] w-[calc(100%-2rem)] rounded-md bg-gray-200 p-4">
+			<b class="text-lg">{agent.name}</b><br /><span class="font-light">{agent.title}</span>
+			<div class="absolute -bottom-12 left-4 flex space-x-2">
+				{#if agent.linkedin}
+					<a href={agent.linkedin} target="_blank">
+						<Linkedin class="rounded-full  bg-black p-1 text-white" />
+					</a>
+				{/if}
+				{#if agent.instagram}
+					<a href={agent.instagram} target="_blank">
+						<Instagram class="rounded-full  bg-black p-1 text-white" />
+					</a>
+				{/if}
+				{#if agent.email}
+					<a href={agent.email} target="_blank">
+						<Mail class="rounded-full  bg-black p-1 text-white" />
+					</a>
+				{/if}
+			</div>
+		</div>
+	</div>
+	<Text className="max-w-4xl text-center px-8 mx-auto font-light text-gray-500 text-lg"
+		>At AHC, I believe navigating the health insurance market should be empowering, not
+		overwhelming. With my extensive experience in the health insurance industry, I’m able to provide
+		tailored recommendations for each client’s unique situation. I prioritize your needs by offering
+		personalized consultations where we take the time to explore important details like network
+		restrictions and out-of-pocket costs across various scenarios. My goal is to make sure you feel
+		confident and well-informed about your coverage options.</Text
+	>
 
 	<Text className="mx-auto mt-8 font-light w-[90%] max-w-md text-lg text-center"
-		>We've been blown away by the support from CobraSolutions. When we realized the steep costs and
-		limited coverage of COBRA, we reached out to our agent for a solution. Within a few days, they
-		found a better alternative that fit our needs, saving us both money and stress!</Text
+		>We've been blown away by the support from Zach. Within a few days, he found a better
+		alternative that fit our needs, saving us both money and stress!</Text
 	>
 	<img class="mx-auto h-12 w-12 rounded-full bg-black" src="/customer.webp" />
+	<div class="mx-auto">
+		<Form></Form>
+	</div>
 </section>
 
 <Contact />

@@ -3,6 +3,7 @@
 
 	import { page } from '$app/stores';
 	import InsureLogo from './content/InsureLogo.svelte';
+	import { Calendar } from 'lucide-svelte';
 
 	export let data;
 
@@ -71,110 +72,19 @@
 	};
 </script>
 
-<svelte:head>
-	<!-- Google tag (gtag.js) -->
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta http-equiv="x-ua-compatible" content="IE=edge" />
-	<meta name="robots" content="index, follow" />
-
-	<!-- Primary Meta Tags -->
-	<meta name="title" content={meta.title} />
-	<meta name="description" content={meta.description} />
-	<meta name="keywords" content={meta.keywords.join(', ')} />
-	<meta name="author" content={meta.author} />
-
-	<!-- Open Graph / Facebook Meta Tags -->
-	<meta property="og:type" content="website" />
-	<meta property="og:title" content={meta.title} />
-	<meta property="og:description" content={meta.description} />
-	<meta property="og:image" content={meta.image} />
-	<meta property="og:image:alt" content={meta.image_alt} />
-	<meta property="og:image:width" content="1200" />
-	<meta property="og:image:height" content="630" />
-	<meta property="og:url" content={currentUrl} />
-	<meta property="og:site_name" content="Your Website Name" />
-
-	<!-- Twitter Meta Tags -->
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content={meta.title} />
-	<meta name="twitter:description" content={meta.description} />
-	<meta name="twitter:image" content={meta.image} />
-	<meta name="twitter:image:alt" content={meta.image_alt} />
-	{#if meta.twitterHandle}
-		<meta name="twitter:site" content={meta.twitterHandle} />
-		<meta name="twitter:creator" content={meta.twitterHandle} />
-	{/if}
-
-	<!-- Additional SEO Meta Tags -->
-	<link rel="canonical" href={currentUrl} />
-	<meta name="theme-color" content="#000000" />
-	<meta name="apple-mobile-web-app-status-bar-style" content="default" />
-	<meta name="format-detection" content="telephone=no" />
-
-	<!-- Favicon and App Icons -->
-	<link rel="icon" href="/favicon.ico" />
-	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-	<link rel="manifest" href="/site.webmanifest" />
-
-	<!-- Schema.org for Google -->
-	<script type="application/ld+json">
-    {JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": meta.title,
-      "description": meta.description,
-      "url": currentUrl,
-      "image": meta.image,
-      "author": {
-        "@type": "Organization",
-        "name": meta.author,
-      },
-    })}
-	</script>
-</svelte:head>
-
 <section class="relative flex h-full min-h-[100dvh] w-screen flex-col">
 	<section class="h-full w-full">
 		<div
-			class="sticky top-0 z-50 flex h-12 w-full flex-row items-center justify-between bg-gray-100 px-8"
+			class="sticky top-0 z-50 flex h-16 w-full flex-row items-center justify-between bg-accent px-8 py-2"
 		>
-			<InsureLogo></InsureLogo>
+			<InsureLogo small={true} size="h-12 w-20 w-fit"></InsureLogo>
 
-			<DropdownMenu.Root>
-				<DropdownMenu.Trigger
-					><svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="24"
-						height="24"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						class="lucide lucide-menu stroke-blue-800"
-						><line x1="4" x2="20" y1="12" y2="12" /><line x1="4" x2="20" y1="6" y2="6" /><line
-							x1="4"
-							x2="20"
-							y1="18"
-							y2="18"
-						/></svg
-					></DropdownMenu.Trigger
-				>
-				<DropdownMenu.Content>
-					<DropdownMenu.Group>
-						<DropdownMenu.Item href="/~/home">Home</DropdownMenu.Item>
-						<DropdownMenu.Item href="/~/about-us">About Us</DropdownMenu.Item>
-						<DropdownMenu.Item href="/~/home#alternatives">COBRA Alternatives</DropdownMenu.Item>
-						<DropdownMenu.Item href="/~/home#proscons">Pros and Cons</DropdownMenu.Item>
-						<DropdownMenu.Item href="/~/home#contact-us">Contact Us</DropdownMenu.Item>
-						<DropdownMenu.Item class="bg-blue-100 font-medium text-blue-600" href="/~/home#enroll"
-							>Enroll Now</DropdownMenu.Item
-						>
-					</DropdownMenu.Group>
-				</DropdownMenu.Content>
-			</DropdownMenu.Root>
+			<a
+				class="transiton-all flex rounded-full bg-[#CDBC8A] px-4 py-1 font-medium text-accent duration-300 hover:bg-opacity-50"
+				target="_blank"
+				href="https://calendly.com/alexanderhealthconsulting/health-insurance-consultation"
+				><Calendar class="my-auto mr-2 size-4 stroke-[1.5]"></Calendar>Book a Consultation</a
+			>
 		</div>
 		<slot />
 
@@ -183,15 +93,12 @@
 		>
 			<div class="flex divide-x-[1px] divide-gray-400/50">
 				<a class="px-1 hover:underline" href="/~/home#enroll">Enroll Now</a>
-				<a class="px-1 hover:underline" href="/~/about-us">About Us</a>
-				<a class="px-1 hover:underline" href="/~/home#alternatives">COBRA Alternatives</a>
-				<a class="px-1 hover:underline" href="/~/home#proscons">Pros and Cons</a>
-				<a class="px-1 hover:underline" href="/~/home#contact-us">Contact Us</a>
+				<a class="px-1 hover:underline" href="/~/about-us">Our Process</a>
 				<a class="px-1 hover:underline" href="/auth">Agents</a>
 			</div>
 
 			<p>
-				Copyright © 2024 COBRA Solutions. All rights reserved.
+				Copyright © 2024 Alexander Health Consulting. All rights reserved.
 				<br />
 			</p>
 		</footer>

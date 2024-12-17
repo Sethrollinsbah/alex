@@ -109,7 +109,7 @@ let why_us = [
 		>
 			<div class={`h-full w-full bg-black/80 flex flex-col justify-center items-center backdrop-blur-sm`}>
 			<div id="#quiz" class="m-auto flex flex-col justify-center items-center text-4xl font-semibold">
-				<Text className="m-auto text-gray-200 text-4xl sm:text-5xl md:text-6xl text-center font-semibold">COBRA Solutions<br/></Text>
+				<Text className="m-auto text-gray-200 text-4xl sm:text-5xl md:text-6xl text-center font-semibold">Alexander Health Consulting<br/></Text>
 				<Text className="m-auto text-gray-200/80 text-lg  max-w-md w-[90%] md:text-xl text-center font-light">Learn about COBRA Insurance alternatives and get a quote today</Text>
 			</div>
 			</div>

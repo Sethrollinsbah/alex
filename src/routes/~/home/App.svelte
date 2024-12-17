@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Form from '$lib/rebuilt/form.svelte';
 	import Contact from '$lib/markdown-content/Contact.svelte';
 	import faq from '$lib/faq.json';
 	import Text from '$lib/text.svelte';
@@ -72,156 +73,65 @@
 <div class="relative h-[100dvh]">
 	<div class="relative h-full w-full">
 		<div
-			class={`absolute left-0 top-0 h-[85dvh] w-full overflow-clip bg-cover bg-center`}
-			style={`background-image: url(/bg.webp)`}
+			class={`absolute left-0 top-0 h-[85dvh] w-full bg-cover bg-center`}
+			style={`background-image: url(https://images.pexels.com/photos/5879677/pexels-photo-5879677.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)`}
 		>
-			<div
-				class={`flex h-full w-full flex-col items-center justify-center bg-black/80 backdrop-blur-sm`}
-			>
+			<div class={`z-30 flex h-full w-full flex-col items-center justify-center bg-accent/80 `}>
 				<div
 					id="enroll"
-					class="m-auto flex flex-col items-center justify-center text-4xl font-semibold"
+					class="m-auto mx-8 mt-96 grid w-auto items-center justify-center text-4xl font-semibold md:mt-20 md:grid-cols-2"
 				>
-					<Text
-						className="m-auto text-gray-200 text-4xl sm:text-5xl md:text-6xl text-center font-semibold"
-						>COBRA Solutions<br /></Text
-					>
-					<Text
-						className="m-auto text-gray-200/80 text-lg  max-w-md w-[90%] md:text-xl text-center font-light"
-						>Learn about COBRA Insurance alternatives and get a quote today</Text
-					>
+					<div>
+						<Text
+							className="m-auto text-gray-200 text-4xl sm:text-5xl md:text-6xl text-center font-semibold"
+							>Alexander Health Consulting<br /></Text
+						>
+						<Text
+							className="m-auto text-gray-200/80 text-lg  max-w-md w-[90%] md:text-xl text-center font-light"
+							>Empowering you with personalized health insurance guidance tailored to your needs.</Text
+						>
+					</div>
+					<div class="mx-auto mt-8 w-fit">
+						<Form></Form>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<Quiz
-		{questions}
-		onSubmit={async (answers) => {
-			try {
-				// Assuming `form` contains the necessary form data
-				const data = answers;
-				// Sending the data to the backend API endpoint
-				const res = await fetch('/api/upload_lead', {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json' // Ensure correct content type
-					},
-					body: JSON.stringify({ data, type: 'Lead' })
-				});
-				// Check if the request was successful
-				if (res.ok) {
-					console.log('Lead uploaded successfully');
-					goto(`/~/completion?name=${data.name.firstName}`); // Navigate to the completion page
-				} else {
-					console.error('Error uploading lead:', await res.text());
-					// Handle any errors from the API
-				}
-			} catch (error) {
-				console.error('Error during submission:', error);
-				// Handle unexpected errors
-			}
-		}}
-	/>
 </div>
 
 <!-- Companies we work with -->
-<div class="mx-auto grid w-[90%] max-w-xl grid-cols-2 items-center justify-evenly pt-16 sm:flex">
+<div
+	class="mx-auto grid w-[90%] max-w-xl grid-cols-2 items-center justify-evenly pt-60 sm:flex md:pt-0"
+>
 	{#each company as c}
 		<img alt="insurance company" src={c} class="mx-auto size-16 object-contain" />
 	{/each}
 </div>
-
-<div class="bg-transparent">
-	<div class="mx-auto w-[90%] max-w-3xl py-12">
-		<h1>What Is COBRA?</h1>
-		<p>
-			The Consolidated Omnibus Budget Reconciliation Act (COBRA) was signed into law on April 7,
-			1986 by Ronald Reagan. COBRA allows former employees to continue their current health coverage
-			after leaving their job, which ensures uninterrupted healthcare access and provides the same
-			benefits while retaining the same doctors they had while employed. This law was designed to
-			help individuals maintain health coverage during job transitions, providing a safety net for
-			millions of Americans.
-		</p>
-
-		<h1>How Does COBRA Work?</h1>
-		<p>
-			When a former employee chooses to opt in for COBRA, they agree to pay the full cost of their
-			health insurance plan, including the portion their employer previously contributed, plus a 2%
-			service fee. By opting in, they will be able to retain the same plan they had while employed,
-			with the same network of doctors and coverage benefits.
-		</p>
-
-		<h1>COBRA Qualifications</h1>
-		<p>There are many ways for someone to qualify for COBRA. These include:</p>
-
-		<ul>
-			<li>
-				Voluntary or involuntary loss of employment, which removes access to employer-sponsored
-				health coverage
-			</li>
-			<li>
-				A reduction in hours worked that results in the employee no longer being eligible for their
-				employer's health insurance coverage
-			</li>
-			<li>
-				A divorce that leads to the loss of health coverage previously provided through a spouse's
-				employer-sponsored plan
-			</li>
-			<li>
-				Death of a spouse, which results in the surviving spouse losing access to health coverage
-				that was provided through the deceased spouse's employer
-			</li>
-			<li>
-				Reaching the maximum age limit (which varies by state) to remain as a dependent on a
-				parent's employer-sponsored health insurance plan
-			</li>
-		</ul>
-		<h2>Duration and Cost of COBRA</h2>
-		<p>
-			COBRA coverage is temporary, and can last between 18 and 36 months, depending on the reason
-			for losing your previous coverage. COBRA coverage also typically costs double the price of
-			your previous plan, and can reach up to 4 times the price of your previous plan! This makes
-			COBRA coverage unaffordable for the average American worker, especially a worker who has their
-			family covered under their employer plan.
-		</p>
-	</div>
-</div>
-
-<div id="alternatives" class="grid grid-cols-1 bg-blue-100 py-12">
-	<div class="mx-auto w-[90%] max-w-3xl">
-		<h2>Alternatives to COBRA</h2>
-
-		<p>
-			Considering COBRA's short duration of coverage, and extremely high price, most people who it
-			is offered to seek out alternative options to prevent overpaying and ensure that them and
-			their family are covered long term. The best alternatives for COBRA include Public Market
-			(ACA) plans and Private Market plans.
-		</p>
-
-		<p>
-			Public Market plans are best suited for individuals with extremely low income, or poor health.
-			These options offer minimal benefits with high out of pocket costs, but cannot deny you
-			coverage for pre-existing conditions, and can protect you from bankruptcy in the case of a
-			major hospitalization.
-		</p>
-
-		<p>
-			Private Market plans are best suited for people in relatively good health, and have may
-			exclude coverage for applicants who are very unhealthy. These options offer reduced rates with
-			increased benefits and lower out of pocket costs, while still protecting you from bankruptcy
-			in the case of a major hospitalization.
-		</p>
-	</div>
+<div class="mx-auto mt-8 w-[90%] max-w-4xl">
+	<h3
+		class="mx-auto mb-4 text-center text-3xl font-medium leading-snug text-gray-700 sm:text-4xl lg:text-5xl"
+	>
+		Our Process
+	</h3>
+	<h5 class="mx-auto mb-2 text-center text-lg font-light text-gray-500 sm:text-xl lg:text-2xl">
+		Our goal as a brokerage is to always act in the best interest of our clients, saving them money
+		while making sure they are covered for any of life’s uncertainties in the future. We achieve
+		this by learning about each clients' occupation, health, and financial situation before making
+		any recommendations.
+	</h5>
+	<h5 class="mx-auto mb-2 text-center text-lg font-light text-gray-500 sm:text-xl lg:text-2xl">
+		Some clients may be able to qualify for exclusive private plans, while others are better served
+		with an ACA plan designed to cover pre-existing health issues.<!---->
+	</h5>
+	<h5 class="mx-auto mb-8 text-center text-lg font-light text-gray-500 sm:text-xl lg:text-2xl">
+		We prioritize building long lasting relationships with our clients by thoroughly educating them
+		about the structure of available plans, guiding them confidently through the complexities of the
+		insurance industry.
+	</h5>
 </div>
 
 <!-- Why us over them -->
-<div id="proscons" class="mx-auto w-[90%] max-w-4xl py-12">
-	<h1>Pros and Cons of COBRA Insurance</h1>
-
-	{#if faq}
-		<FAQ title="General Questions" faq={Object.entries(faq)}></FAQ>
-	{/if}
-</div>
 
 <Contact />
 
@@ -229,10 +139,6 @@
 	/* Reset margins for consistent spacing */
 	h1,
 	h2,
-	h3,
-	h4,
-	h5,
-	h6,
 	p {
 		margin: 0;
 		padding: 0;
@@ -263,30 +169,6 @@
 		font-weight: 600;
 		margin-bottom: 1.25rem;
 		letter-spacing: -0.0125em;
-	}
-
-	h3 {
-		font-size: 1.75rem; /* 28px */
-		font-weight: 600;
-		margin-bottom: 1rem;
-	}
-
-	h4 {
-		font-size: 1.5rem; /* 24px */
-		font-weight: 500;
-		margin-bottom: 1rem;
-	}
-
-	h5 {
-		font-size: 1.25rem; /* 20px */
-		font-weight: 500;
-		margin-bottom: 0.75rem;
-	}
-
-	h6 {
-		font-size: 1.125rem; /* 18px */
-		font-weight: 500;
-		margin-bottom: 0.75rem;
 	}
 
 	/* Paragraph Styles */
